@@ -1,0 +1,12 @@
+{
+  "name": "armagruposnkc",
+  "version": "1.0.0",
+  "description": "Aplicación para armar grupos aleatorios",
+  "scripts": {
+    "test": "jest",
+    "build": "pnpm install && pnpm test"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

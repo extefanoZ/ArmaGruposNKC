@@ -1,0 +1,9 @@
+# Dependencias locales (NUNCA se deben subir)
+node_modules/
+
+# Archivos de bloqueo redundantes (ya que utiliza pnpm)
+package-lock.json
+
+# Archivos del sistema operativo o entorno local
+.DS_Store
+Thumbs.db

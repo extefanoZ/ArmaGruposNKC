@@ -1,0 +1,32 @@
+name: Entorno de Integración Continua
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: 2. Instalar pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9 # Asegura la instalación de una versión reciente de pnpm
+
+      - name: 3. Configurar entorno Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm' # Optimiza el tiempo guardando en caché las dependencias de pnpm
+
+      - name: 4. Instalar dependencias
+        run: pnpm install
+
+      - name: 5. Ejecutar Prueba Automatizada
+        run: pnpm test
