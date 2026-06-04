@@ -9,7 +9,7 @@ Permitir que un usuario agregue nombres a una lista, seleccione el tamaño de eq
 
 ## ✨ Características
 - Añadir y eliminar participantes (persistencia local vía `localStorage`).
-- Selección de tamaño de equipo (1 a 4 integrantes).
+- Selección de tamaño de equipo (1 a 12 integrantes).
 - Generación de grupos aleatorios y visualización inmediata.
 - Pequeña suite de pruebas unitarias para la lógica de agrupamiento (Jest).
 
@@ -55,7 +55,7 @@ Si quieres mejorar la UI, añadir opciones de configuración (por ejemplo manejo
 - Incluye pruebas para cambios en la lógica.
 
 ## 📝 Licencia
-Licencia abierta — añade la tuya aquí si aplica.
+Licencia abierta.
 
 ## ✉️ Contacto
 Si tienes dudas o sugerencias, abre un issue en este repositorio.
