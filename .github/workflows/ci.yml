@@ -6,6 +6,15 @@ on:
   pull_request:
     branches: [ main, master ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -29,3 +38,22 @@ jobs:
 
       - name: 5. Ejecutar Prueba Automatizada
         run: pnpm test
+
+      - name: 6. Preparar sitio para GitHub Pages
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build-and-test
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 1. Desplegar sitio en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
