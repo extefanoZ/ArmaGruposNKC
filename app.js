@@ -119,7 +119,7 @@ function crearGrupos(size, listaBase = amigos) {
     const copia = [...listaBase];
     mezclarArrayEnSitio(copia);
     const grupos = [];
-    for (let i = 0; i < copia.length; i += size + 1  ) {
+    for (let i = 0; i < copia.length; i += size ) {
         grupos.push(copia.slice(i, i + size));
     }
     return grupos;
