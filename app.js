@@ -125,6 +125,7 @@ function crearGrupos(size, listaBase = amigos) {
     return grupos;
 }
 
+//esto no es un comentario
 // Pinta los grupos en el UL de resultado
 function renderizarGrupos(grupos, size) {
     const resultadoCard = document.getElementById('resultado-card');
