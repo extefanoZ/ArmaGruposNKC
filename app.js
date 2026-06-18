@@ -79,7 +79,7 @@ function limpiarLista() {// Esta funcion limpia la lista de amigos y el dom
     lista.innerHTML = ''; // Limpiamos la lista en el DOM
 };
 
-actualizarTamañoEquipo = (nuevoTamaño) => {
+function actualizarTamañoEquipo(nuevoTamaño) {
     tamañoEquipo = nuevoTamaño;
     // const resultado = document.getElementById("resultado");
     // const textoSeleccion = document.createElement('li');
@@ -91,10 +91,8 @@ actualizarTamañoEquipo = (nuevoTamaño) => {
     // resultado.innerHTML = `<li style='color:limegreen;font-weight:bold;font-size:2em;'>Seleccionaste equipos de ${nuevoTamaño} integrantes</li>`;
     // Agrega también al HTML una referencia visual del tamaño seleccionado
     // const equipoInfo = document.getElementById("equipoInfo");
-
-};
+}
 function sortearAmigo() {// Esta funcion elige un solo objeto aleatoriamente de la lista de amigos y devuelve en el dom
-    const lista = document.getElementById("listaAmigos");
     if (amigos.length === 0) {
         alert("No hay amigos en la lista.");
         return;
@@ -142,12 +140,19 @@ function renderizarGrupos(grupos, size) {
     if (!listaEquipos) return;
     listaEquipos.innerHTML = '';
 
-    grupos.forEach((equipo, idx) => {
+    grupos.forEach((equipo) => {
         const li = document.createElement('li');
         li.classList.add('resultado-item');
         li.textContent = `${equipo.join(', ')}`;
         listaEquipos.appendChild(li);
     });
+}
+
+if (typeof window !== 'undefined') {
+    window.agregarAmigo = agregarAmigo;
+    window.limpiarLista = limpiarLista;
+    window.sortearAmigo = sortearAmigo;
+    window.actualizarTamañoEquipo = actualizarTamañoEquipo;
 }
 
 if (typeof module !== 'undefined' && module.exports) {
