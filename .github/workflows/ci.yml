@@ -21,15 +21,15 @@ jobs:
 
     steps:
       - name: 1. Clonar el repositorio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 2. Instalar pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 9 # Asegura la instalación de una versión reciente de pnpm
 
       - name: 3. Configurar entorno Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '24'
 
@@ -41,7 +41,7 @@ jobs:
 
       - name: 6. Preparar sitio para GitHub Pages
         if: github.event_name == 'push'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .
 
