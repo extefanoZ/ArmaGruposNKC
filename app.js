@@ -91,6 +91,7 @@ function actualizarTamañoEquipo(nuevoTamaño) {
     // resultado.innerHTML = `<li style='color:limegreen;font-weight:bold;font-size:2em;'>Seleccionaste equipos de ${nuevoTamaño} integrantes</li>`;
     // Agrega también al HTML una referencia visual del tamaño seleccionado
     // const equipoInfo = document.getElementById("equipoInfo");
+    // se quita esto porque no es relevante d e momento.
 }
 function sortearAmigo() {// Esta funcion elige un solo objeto aleatoriamente de la lista de amigos y devuelve en el dom
     if (amigos.length === 0) {
