@@ -1,7 +1,9 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 
 // Cargar la lista de amigos desde localStorage si existe
-let amigos = JSON.parse(localStorage.getItem('amigos')) || [];
+let amigos = typeof localStorage !== 'undefined'
+    ? JSON.parse(localStorage.getItem('amigos')) || []
+    : [];
 let tamañoEquipo = null; // Tamaño del equipo seleccionado
 
 function agregarAmigo() { // Esta función se ejecuta al hacer clic en el botón "Agregar Amigo"
@@ -16,30 +18,32 @@ function agregarAmigo() { // Esta función se ejecuta al hacer clic en el botón
     }
 }
 // Permite agregar amigo presionando Enter en el input
-document.addEventListener('DOMContentLoaded', function() {
-    const input = document.getElementById("amigo");
-    input.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            agregarAmigo();
-        }
-    });
-
-    // Mostrar la lista de amigos al cargar la página si hay datos
-    if (amigos.length > 0) {
-        mostrarLista();
-    }
-
-    // Vincula el selector de tamaño de equipo
-    const select = document.getElementById('teamSizeSelect');
-    if (select) {
-        select.addEventListener('change', (e) => {
-            const value = parseInt(e.target.value, 10);
-            if (!isNaN(value)) {
-                actualizarTamañoEquipo(value);
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById("amigo");
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                agregarAmigo();
             }
         });
-    }
-});
+
+        // Mostrar la lista de amigos al cargar la página si hay datos
+        if (amigos.length > 0) {
+            mostrarLista();
+        }
+
+        // Vincula el selector de tamaño de equipo
+        const select = document.getElementById('teamSizeSelect');
+        if (select) {
+            select.addEventListener('change', (e) => {
+                const value = parseInt(e.target.value, 10);
+                if (!isNaN(value)) {
+                    actualizarTamañoEquipo(value);
+                }
+            });
+        }
+    });
+}
 function mostrarLista() {
     const lista = document.getElementById("listaAmigos");// Obtenemos el elemento de la lista del DOM
     lista.innerHTML =''; // Limpiamos la lista antes de mostrar los amigos
@@ -111,11 +115,11 @@ function mezclarArrayEnSitio(arr) {
 }
 
 // Crea grupos aleatorios del tamaño indicado, a partir de la lista de amigos
-function crearGrupos(size) {
-    const copia = [...amigos];
+function crearGrupos(size, listaBase = amigos) {
+    const copia = [...listaBase];
     mezclarArrayEnSitio(copia);
     const grupos = [];
-    for (let i = 0; i < copia.length; i += size) {
+    for (let i = 0; i < copia.length; i += size + 1  ) {
         grupos.push(copia.slice(i, i + size));
     }
     return grupos;
@@ -143,4 +147,11 @@ function renderizarGrupos(grupos, size) {
         li.textContent = `${equipo.join(', ')}`;
         listaEquipos.appendChild(li);
     });
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        crearGrupos,
+        mezclarArrayEnSitio
+    };
 }
